@@ -81,11 +81,11 @@ source ~/.profile
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -100,7 +100,7 @@ source ~/.profile
 alias zshrc="code ~/.zshrc"
 alias cat="bat"
 alias Github="cd ~/Github"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Git specific aliases
 alias fetch='git fetch prod master'
@@ -123,10 +123,9 @@ alias tkillserver='tmux kill-server'
 
 
 function dotfiles-auto {
-dotfiles fetch
   dotfiles add -p
   dotfiles commit -a -m "autoupdate `date +%F-%T`"
-  dotfiles push
+  dotfiles push -u
 }
 
 function clone {
