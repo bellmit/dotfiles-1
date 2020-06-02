@@ -1,0 +1,7 @@
+[user]
+	name = Samrat Jha
+	email = samrat.jha@appian.com
+[core]
+	editor = vim
+[push]
+	default = current
