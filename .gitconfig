@@ -1,0 +1,18 @@
+[user]
+	name = Samrat Jha
+	email = samrat.jha@appian.com
+[core]
+	autocrlf = input
+	editor = vim
+[push]
+	default = simple
+[color]
+	ui = true
+[merge]
+	conflictStyle = diff3
+[rerere]
+	enabled = 1
+[diff "sopsdiffer"]
+	textconv = sops -d
+[pager]
+	branch = false

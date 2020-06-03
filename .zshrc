@@ -142,7 +142,7 @@ alias personal='cd /Users/samrat.jha/personal'
 alias zshrc='code ~/.zshrc'
 alias home='cd ~'
 alias hs='history | grep'
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/ --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Tmux specific
 alias tconf='code ~/.tmux.conf'

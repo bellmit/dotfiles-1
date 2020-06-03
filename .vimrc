@@ -11,6 +11,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'git@github.com:kien/ctrlp.vim.git'
   Plug 'mbbill/undotree'
+  Plug 'vimwiki/vimwiki'
+  Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -69,6 +71,24 @@ inoremap jk <ESC>`^
 inoremap {<CR> {<CR>}<Esc>ko<tab>
 inoremap [<CR> [<CR>]<Esc>ko<tab>
 inoremap (<CR> (<CR>)<Esc>ko<tab>
+
+" ==========  Start Plugin configurations ==============
+" ------- Vim wiki specific --------------------
+filetype plugin on
+set nocompatible
+let wiki_1 = {}
+let wiki_1.path = '~/personal/notes/'
+let wiki_1.syntax = 'markdown'
+let wiki_1.ext = '.md'
+let g:vimwiki_list = [wiki_1]
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+
+" ----- vim-instant-markdown - Instant Markdown previews from Vim ---
+" https://github.com/suan/vim-instant-markdown
+let g:instant_markdown_autostart = 0	" disable autostart
+map <leader>md :InstantMarkdownPreview<CR>
+
+" ==========  End Plugin configurations ==============
 
 syntax on
 colorscheme gruvbox
