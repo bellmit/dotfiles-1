@@ -142,7 +142,7 @@ alias personal='cd /Users/samrat.jha/personal'
 alias zshrc='code ~/.zshrc'
 alias home='cd ~'
 alias hs='history | grep'
-alias dotfiles='/usr/bin/ --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Tmux specific
 alias tconf='code ~/.tmux.conf'
@@ -268,9 +268,9 @@ function aws-sand-admin {
 }
 
 function dotfiles-auto {
-  config add -u
-  config commit -a -m "autoupdate `date +%F-%T`"
-  config push
+  dotfiles add -u
+  dotfiles commit -a -m "autoupdate `date +%F-%T`"
+  dotfiles push
 }
 
 # The next line updates PATH for the Google Cloud SDK.
