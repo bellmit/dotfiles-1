@@ -6,19 +6,31 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" ----------- Files related -----------------------------
-nnoremap <silent> <Leader>; :Files<CR>
-nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
+" ----------- File finding related -----------------------------
+
+" Search for files starting from git root using ripgrep's derive root
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+nnoremap <silent> <C-p> :Files<CR>
+
+" Search for files starting from home directory
+nnoremap <silent> <C-f> :Files ~/<CR>
+
+" Search for files starting from current working directory
+nnoremap <silent> <C-o> :Files <C-r>=expand("%:h")<CR>/<CR>
+
+" List all buffers
 nnoremap <leader>b :buffers<cr>:b<space>
 
-" ----------- Actual configurations -------------------
+" ----------- Regular configurations -------------------
+
 " Leader mapping
 let mapleader=";"       " change leader key to ;
 let maplocalleader=";"  " change local leader key to ;
@@ -29,7 +41,6 @@ noremap <silent> <leader>Y "+Y
 noremap <silent> <leader>p "+p
 noremap <silent> <leader>P "+P
 
-" ------------ Regular configurations --------------------
 " <leader>ev edits .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
@@ -110,20 +121,12 @@ set undodir=~/.vim/undodir " make sure this directory exists
 set undofile
 
 " ---------- Advanced Configurations Sourced from ThePrimeagen -------
-" Lets rgrep derive the git root of the current working directory
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Filetree configuration
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-" ag is fast enough. No need for caching
-let g:ctrlp_use_caching = 0
 
 " Configuration related to resizing filetree window and switching between tabs
 nnoremap <leader>h :wincmd h<CR>
