@@ -1,44 +1,51 @@
-" Plugins will be downloaded under the specified directory.
+" ----------- All plugin related stuff --------------
 call plug#begin('~/.vim/plugged')
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'ycm-core/YouCompleteMe'
   Plug 'morhetz/gruvbox'
   Plug 'jremmen/vim-ripgrep'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'ntpeters/vim-better-whitespace'
-  Plug 'git@github.com:kien/ctrlp.vim.git'
   Plug 'mbbill/undotree'
   Plug 'vimwiki/vimwiki'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" ----------- Fzf related -----------------------------
-nnoremap <silent> <Leader>; :Files<CR>
-nnoremap <silent> <Leader>' :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <leader>b :buffers<cr>:b<space>
-nnoremap <leader>h :split<cr>:b<space>
-nnoremap <leader>v :vsplit<cr>:b<space>
+" ----------- File finding related -----------------------------
 
-" ----------- Actual configurations -------------------
+" Search for files starting from git root using ripgrep's derive root
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+nnoremap <silent> <C-p> :Files<CR>
+
+" Search for files starting from home directory
+nnoremap <silent> <C-f> :Files ~/<CR>
+
+" Search for files starting from current working directory
+nnoremap <silent> <C-o> :Files <C-r>=expand("%:h")<CR>/<CR>
+
+" List all buffers
+nnoremap <leader>b :buffers<cr>:b<space>
+
+" ----------- Regular configurations -------------------
+
 " Leader mapping
 let mapleader=";"       " change leader key to ;
 let maplocalleader=";"  " change local leader key to ;
-
-" <leader>ev edits .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-
-" <leader>sv sources .vimrc
-nnoremap <leader>sv :source $MYVIMRC<CR>:redraw<CR>:echo $MYVIMRC 'reloaded'<CR>
 
 " Always yank/paste to/from system clipboard
 noremap <silent> <leader>y "+y
 noremap <silent> <leader>Y "+Y
 noremap <silent> <leader>p "+p
 noremap <silent> <leader>P "+P
+
+" <leader>ev edits .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+
+" <leader>sv sources .vimrc
+nnoremap <leader>sv :source $MYVIMRC<CR>:redraw<CR>:echo $MYVIMRC 'reloaded'<CR>
 
 " <leader>w writes the whole buffer to the current file
 nnoremap <silent> <leader>w :w!<CR>
@@ -88,8 +95,10 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 let g:instant_markdown_autostart = 0	" disable autostart
 map <leader>md :InstantMarkdownPreview<CR>
 
+
 " ==========  End Plugin configurations ==============
 
+" ----------- Setting sane defaults --------------
 syntax on
 colorscheme gruvbox
 set background=dark
@@ -111,20 +120,13 @@ set nobackup
 set undodir=~/.vim/undodir " make sure this directory exists
 set undofile
 
-" Lets rgrep derive the git root of the current working directory
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" ---------- Advanced Configurations Sourced from ThePrimeagen -------
 
 " Filetree configuration
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-" ag is fast enough. No need for caching
-let g:ctrlp_use_caching = 0
 
 " Configuration related to resizing filetree window and switching between tabs
 nnoremap <leader>h :wincmd h<CR>
