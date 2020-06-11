@@ -1,6 +1,5 @@
 " ----------- All plugin related stuff --------------
 call plug#begin('~/.vim/plugged')
-  Plug 'ycm-core/YouCompleteMe'
   Plug 'morhetz/gruvbox'
   Plug 'jremmen/vim-ripgrep'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -138,10 +137,6 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
-
-" YCM remappings
-nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
 
 " Move chunks of code up or down with Shift J or Shift K
 vnoremap J :m '>+1<CR>gv=gv
