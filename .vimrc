@@ -35,10 +35,9 @@ let mapleader=";"       " change leader key to ;
 let maplocalleader=";"  " change local leader key to ;
 
 " Always yank/paste to/from system clipboard
-noremap <silent> <leader>y "+y
-noremap <silent> <leader>Y "+Y
-noremap <silent> <leader>p "+p
-noremap <silent> <leader>P "+P
+noremap <silent> <leader>y "*y
+noremap <silent> <leader>p "*p
+noremap <silent> <leader>P "*P
 
 " <leader>ev edits .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
