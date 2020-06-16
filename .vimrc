@@ -36,8 +36,24 @@ let maplocalleader=";"  " change local leader key to ;
 
 " Always yank/paste to/from system clipboard
 noremap <silent> <leader>y "*y
+vnoremap <silent> <leader>y "*y
 noremap <silent> <leader>p "*p
+vnoremap <silent> <leader>p "*p
 noremap <silent> <leader>P "*P
+vnoremap <silent> <leader>P "*P
+
+" use <leader>d to delete a line without adding it to yank
+nnoremap <silent> <leader>d "_d
+vnoremap <silent> <leader>d "_d
+
+" d to delete and <leader>d to actually cut
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
 
 " <leader>ev edits .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -55,19 +71,6 @@ inoremap <silent> <leader>q <ESC>:wq!<CR>
 
 " Clear highlighted search with Ctrl + L
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-
-" use <leader>d to delete a line without adding it to yank
-nnoremap <silent> <leader>d "_d
-vnoremap <silent> <leader>d "_d
-
-" d to delete and <leader>d to actually cut
-nnoremap x "_x
-nnoremap d "_d
-nnoremap D "_D
-vnoremap d "_d
-nnoremap <leader>d ""d
-nnoremap <leader>D ""D
-vnoremap <leader>d ""d
 
 " exit from insert mode without cursor movement
 inoremap jk <ESC>`^
