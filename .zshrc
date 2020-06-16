@@ -127,6 +127,8 @@ alias git-top='pushd $(git rev-parse --show-toplevel) 1> /dev/null'
 
 # General ones
 alias gradlew='./gradlew --console=plain'
+alias rm='rm -i'
+alias mv='mv -i'
 
 # Navigation in repos
 alias aerepo='cd /Users/samrat.jha/repo/ae'
