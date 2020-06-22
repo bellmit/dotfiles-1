@@ -103,10 +103,15 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
+# Edit command line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey ^e edit-command-line
+
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 export VAULT_ADDR=https://vault.eng.appianci.net
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # Add to the path.
 if [[ ! $1 =~ /personal/ ]] ; then
    export PATH=~/personal/scripts:$PATH
@@ -287,3 +292,4 @@ export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
 
 # Created by `userpath` on 2020-03-16 22:50:17
 export PATH="$PATH:/Users/samrat.jha/.local/bin"
+
