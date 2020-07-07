@@ -15,10 +15,7 @@ call plug#end()
 " ----------- File finding related -----------------------------
 
 " Search for files starting from git root using ripgrep's derive root
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
 
 " Search for files starting from home directory
 nnoremap <silent> <C-f> :Files ~/<CR>
@@ -135,7 +132,6 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
