@@ -11,19 +11,19 @@ call plug#begin('~/.vim/plugged')
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+" ----------- Statusline ---------------------
+set statusline=
+set statusline+=\ %M
+set statusline+=\ %y
+set statusline+=\ %F
+
 " ----------- File finding related -----------------------------
 
-" Search for files starting from git root using ripgrep's derive root
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-nnoremap <silent> <C-p> :Files<CR>
+" Search for git tracked files
+nnoremap <silent> <C-p> :GFiles<CR>
 
 " Search for files starting from home directory
 nnoremap <silent> <C-f> :Files ~/<CR>
-
-" Search for files starting from current working directory
-nnoremap <silent> <C-o> :Files <C-r>=expand("%:h")<CR>/<CR>
 
 " List all buffers
 nnoremap <leader>b :buffers<cr>:b<space>
@@ -136,7 +136,6 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 

@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# For a ;ull list of active aliases, run `alias`.
 #
 
 # Edit command line in vim with ctrl-e:
@@ -111,7 +111,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Hom
 export VAULT_ADDR=https://vault.eng.appianci.net
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+#export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # Add to the path.
 if [[ ! $1 =~ /personal/ ]] ; then
    export PATH=~/personal/scripts:$PATH
