@@ -12,9 +12,9 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " ----------- Statusline ---------------------
+set laststatus=2 " Show statusline for even a single buffer
 set statusline=
 set statusline+=\ %M
-set statusline+=\ %y
 set statusline+=\ %F
 
 " ----------- File finding related -----------------------------
