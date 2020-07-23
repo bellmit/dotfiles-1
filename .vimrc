@@ -9,6 +9,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
