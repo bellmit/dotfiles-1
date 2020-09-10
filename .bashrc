@@ -6,6 +6,41 @@ MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export PATH
 export MANPATH
 export VAULT_ADDR=https://vault.eng.appianci.net
+
+load_nvm() {
+  export NVM_DIR=~/.nvm
+  . /usr/local/opt/nvm/nvm.sh
+}
+
+node() {
+  unset -f node
+  [ -z "$NVM_BIN" ] && load_nvm
+  node $@
+}
+
+npm() {
+  unset -f npm
+  [ -z "$NVM_BIN" ] && load_nvm
+  npm $@
+}
+
+npx() {
+  unset -f npx
+  [ -z "$NVM_BIN" ] && load_nvm
+  npx $@
+}
+
+yarn() {
+  unset -f yarn
+  [ -z "$NVM_BIN" ] && load_nvm
+  yarn $@
+}
+
+nvm() {
+  unset -f nvm
+  [ -z "$NVM_BIN" ] && load_nvm
+  nvm $@
+}
 # END MANAGED EXPORT BLOCK
 # Bindings
 bind '"\C-i":complete'

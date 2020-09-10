@@ -292,4 +292,4 @@ export FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
 
 # Created by `userpath` on 2020-03-16 22:50:17
 export PATH="$PATH:/Users/samrat.jha/.local/bin"
-
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
