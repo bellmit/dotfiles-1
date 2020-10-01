@@ -129,6 +129,7 @@ alias branches='git branch'
 alias remote='git remote -v'
 alias logf='git log --date-order --all --graph --format="%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s"'
 alias git-top='pushd $(git rev-parse --show-toplevel) 1> /dev/null'
+alias opr='basename $(git remote show -n prod | grep Fetch | cut -d: -f2-) .git | xargs -I{} open -n -a "Google Chrome" --args "https://github.com/appian/{}/compare/master...samratjha96:$(git_current_branch)\?expand\=1"'
 
 # General ones
 alias gradlew='./gradlew --console=plain'
