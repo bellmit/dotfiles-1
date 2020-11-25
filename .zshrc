@@ -135,6 +135,7 @@ alias opr='basename $(git remote show -n prod | grep Fetch | cut -d: -f2-) .git 
 alias gradlew='./gradlew --console=plain'
 alias rm='rm -i'
 alias mv='mv -i'
+alias python='python3'
 
 # Navigation in repos
 alias aerepo='cd /Users/samrat.jha/repo/ae'
