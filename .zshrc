@@ -8,7 +8,7 @@ export ZSH="/Users/samrat.jha/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="jonathan"
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
@@ -105,12 +105,16 @@ source $ZSH/oh-my-zsh.sh
 
 # Edit command line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
-bindkey ^e edit-command-line
+bindkey "^e" edit-command-line
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
-export VAULT_ADDR=https://vault.eng.appianci.net
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export M2_HOME=/usr/local/opt/maven@3.2/libexec
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
+
+export VAULT_ADDR=https://vault.eng.appianci.net
 #export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # Add to the path.
 if [[ ! $1 =~ /personal/ ]] ; then
@@ -136,16 +140,6 @@ alias gradlew='./gradlew --console=plain'
 alias rm='rm -i'
 alias mv='mv -i'
 alias python='python3'
-
-# Navigation in repos
-alias aerepo='cd /Users/samrat.jha/repo/ae'
-alias genrepo='cd /Users/samrat.jha/repo/ICC/genesys-cse'
-alias twirepo='cd /Users/samrat.jha/repo/ICC/twilio-cse'
-alias twiservrepo='cd /Users/samrat.jha/repo/ICC/twilio-servlet'
-alias twiconnrepo='cd /Users/samrat.jha/repo/ICC/twilio-connected-system'
-alias twiplugin='cd /Users/samrat.jha/repo/ICC/twilio-plugins'
-alias icc='cd /Users/samrat.jha/repo/ICC'
-alias personal='cd /Users/samrat.jha/personal'
 
 # Other aliases
 alias zshrc='code ~/.zshrc'
