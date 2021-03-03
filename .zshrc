@@ -80,7 +80,7 @@ SPACESHIP_PROMPT_ORDER=(
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux z)
+plugins=(git tmux z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -228,7 +228,7 @@ function vault-login {
   if [ $? -ne 0 ]; then
     echo -n "enter ldap username: " && \
     read username && \
-    vault login -method=ldap username=$username > /dev/null
+    vault login -method=okta username=$username > /dev/null
   fi
 }
 
@@ -282,6 +282,12 @@ function dotfiles-auto {
   dotfiles commit -a -m "autoupdate `date +%F-%T`"
   dotfiles push
 }
+
+function jdk {
+  version=$1
+  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+  java -version
+ }
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/samrat.jha/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/samrat.jha/Downloads/google-cloud-sdk/path.zsh.inc'; fi
