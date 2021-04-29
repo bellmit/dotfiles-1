@@ -54,6 +54,7 @@
 ;; they are implemented.
 ;;
 ;;
+(setq projectile-git-command t)
 
 (use-package general
   :config
@@ -68,3 +69,15 @@
   "t"  '(:ignore t :which-key "toggles")
   "w" 'save-buffer
 )
+
+;; magit related
+(samrat/leader-key-def
+  "g"   '(:ignore t :which-key "git")
+  "gs"  'magit-status
+  "gl"   '(:ignore t :which-key "log")
+  "glc" 'magit-log-current
+  "glf" 'magit-log-buffer-file
+  "gb"  'magit-branch
+  "gP"  'magit-push-current
+  "gf"  'magit-fetch
+  "gr"  'magit-rebase)

@@ -186,3 +186,21 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+(use-package docker
+  :straight t)
+
+(use-package dockerfile-mode
+  :straight t)
+
+(use-package vterm
+  ;; :ensure-system-package cmake
+  :straight t
+  :hook
+  (vterm-mode . goto-address-mode)
+  :custom
+  (vterm-shell "/bin/zsh")
+  (vterm-kill-buffer-on-exit t)
+  :config
+  (with-eval-after-load 'evil
+    (add-to-list 'evil-emacs-state-modes 'vterm-mode)))
