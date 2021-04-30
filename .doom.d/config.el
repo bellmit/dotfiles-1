@@ -68,6 +68,7 @@
 (samrat/leader-key-def
   "t"  '(:ignore t :which-key "toggles")
   "w" 'save-buffer
+  "m" 'maximize-window
 )
 
 ;; magit related
