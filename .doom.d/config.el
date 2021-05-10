@@ -25,8 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
-
+(setq doom-theme 'doom-acario-light)
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -55,6 +54,7 @@
 ;;
 ;;
 (setq projectile-git-command t)
+(setq projectile-track-known-projects-automatically nil)
 
 (use-package general
   :config
@@ -65,11 +65,14 @@
     :prefix "SPC"
     :global-prefix ";"))
 
+;; Custom keybindings
 (samrat/leader-key-def
   "t"  '(:ignore t :which-key "toggles")
   "w" 'save-buffer
-  "m" 'maximize-window
-)
+  "m" 'doom/window-maximize-buffer
+  )
+
+(global-set-key (kbd "C-/") 'swiper)
 
 ;; magit related
 (samrat/leader-key-def
@@ -82,3 +85,18 @@
   "gP"  'magit-push-current
   "gf"  'magit-fetch
   "gr"  'magit-rebase)
+
+;; Python Configuration
+(add-hook 'python-mode-hook #'format-all-mode)
+
+;; Company mode
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+   ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
