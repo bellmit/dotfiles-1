@@ -72,7 +72,18 @@
   "m" 'doom/window-maximize-buffer
   )
 
+;; This seems to only work on Linux
 (global-set-key (kbd "C-/") 'swiper)
+
+;; Ctrl + P to search through git files
+(map! :leader
+      :desc "Search through git files"
+      "p f"   #'counsel-git)
+
+;; Leader + / to ripgrep through files
+(map! :leader
+      :desc "Use ripgrep for text in files"
+      "/"   #'counsel-rg)
 
 ;; magit related
 (samrat/leader-key-def
@@ -100,3 +111,18 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
+
+;; Projectile configuration
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (setq projectile-completion-system 'ivy)
+  (projectile-global-mode)
+  :init
+  (setq projectile-project-search-path '("~/Github/"))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+(use-package counsel-projectile
+  :after projectile
+  :config
+  (counsel-projectile-mode))
