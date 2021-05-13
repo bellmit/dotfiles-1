@@ -32,7 +32,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -54,6 +54,8 @@
 ;;
 ;;
 (setq projectile-git-command t)
+
+;; Don't let projectile auto track projects
 (setq projectile-track-known-projects-automatically nil)
 
 (use-package general
@@ -91,7 +93,6 @@
   "gs"  'magit-status
   "gl"   '(:ignore t :which-key "log")
   "glc" 'magit-log-current
-  "glf" 'magit-log-buffer-file
   "gb"  'magit-branch
   "gP"  'magit-push-current
   "gf"  'magit-fetch
