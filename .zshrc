@@ -116,7 +116,7 @@ bindkey "^e" edit-command-line
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 export M2_HOME=/usr/local/opt/maven@3.2/libexec
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
@@ -305,3 +305,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export PATH="$HOME/.poetry/bin:$PATH"
