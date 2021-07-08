@@ -132,15 +132,14 @@ fi
 # Git specific
 alias fetch='git fetch prod master'
 alias status='git status'
-alias commit='git commit -m'
-alias amend='git commit --amend'
+alias commit='git commit -n -m'
+alias amend='git commit -n --amend'
 alias push='git push'
 alias fpush='git push -f'
 alias branches='git branch'
 alias remote='git remote -v'
 alias logf='git log --date-order --all --graph --format="%C(green)%h%Creset %C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset%s"'
 alias git-top='pushd $(git rev-parse --show-toplevel) 1> /dev/null'
-alias opr='basename $(git remote show -n prod | grep Fetch | cut -d: -f2-) .git | xargs -I{} open "https://github.com/appian/{}/compare/master...samratjha96:$(git_current_branch)?expand\=1"'
 
 # General ones
 alias gradlew='./gradlew --console=plain'
@@ -149,19 +148,30 @@ alias mv='mv -i'
 alias python='python3'
 
 # Other aliases
-alias zshrc='code ~/.zshrc'
+alias zshrc='vim ~/.zshrc'
 alias home='cd ~'
 alias hs='history | grep'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Tmux specific
-alias tconf='code ~/.tmux.conf'
+alias tconf='vim ~/.tmux.conf'
 alias tattach='tmux attach -t'
 alias tnew='tmux new -s'
 alias tkill='tmux kill-session -t'
 alias tkillserver='tmux kill-server'
 
 # Functions
+function opr() {
+  current_branch=$(git rev-parse --abbrev-ref HEAD 2&> /dev/null)
+  remote=$(git config branch."${branch}".remote || echo "prod")
+
+  remote_url=$(git remote get-url $remote)
+
+  upstream=$(echo "$remote_url"| awk -F ':' '{print $2}' | sed 's/.git//')
+
+  open "https://github.com/$upstream/compare/master...samratjha96:$current_branch?expand=1"
+}
+
 function assh () {
   ssh -oStrictHostKeyChecking=no -A appian@$1.appianci.net;
 }
@@ -172,18 +182,6 @@ function tailAppServerLog () {
 
 function scpPlugin {
   scp -oStrictHostKeyChecking=no $1 appian@$2.appianci.net:/usr/local/appian/ae/_admin/plugins/;
-}
-
-function fd {
- local dir
- dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d \
-      -print 2> /dev/null | fzf +m) &&
- cd "$dir"
-}
-
-function twilioServletDev {
-  ~/repo/ae/./gradlew assembleJars;
-  scp /Users/samrat.jha/repo/ae/test/one/Plugins/twilioServlets-v1_5.jar appian@$1.appianci.net:/usr/local/appian/ae/_admin/plugins/;
 }
 
 function gen-setup {
@@ -197,12 +195,6 @@ function gwssh {
 
 function glssh {
   ssh genesys-engineering.appianci.net
-}
-
-function delete-twilio-subaccount {
-  curl -X POST https://api.twilio.com/2010-04-01/Accounts/$1.json \
---data-urlencode "Status=closed" \
--u $1:$2
 }
 
 function clone {
