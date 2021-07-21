@@ -125,9 +125,8 @@
         projectile-switch-project-action #'projectile-dired)
 )
 
-;; Helm
-(use-package helm
- :diminish
- :init
- (setq helm-autoresize-min-height 60)
-)
+;; Dired
+(use-package dired
+  :config
+  (setq dired-dwim-target t)
+  :hook (dired-mode . dired-hide-details-mode))
