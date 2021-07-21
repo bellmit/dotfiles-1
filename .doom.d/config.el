@@ -112,16 +112,22 @@
 
 ;; Projectile configuration
 (use-package projectile
+  :ensure t
   :diminish projectile-mode
   :config
-  (setq projectile-completion-system 'ivy)
-  (projectile-global-mode)
+  (projectile-global-mode 1)
   :init
-  (setq projectile-project-search-path '("~/repo"))
-  (setq projectile-switch-project-action #'projectile-dired))
+  (setq projectile-use-git-grep t
+        ;; Fix for compilation command and `generic` projects
+        projectile-project-compilation-cmd ""
+        projectile-project-run-cmd ""
+        projectile-project-search-path '("~/repo")
+        projectile-switch-project-action #'projectile-dired)
+)
 
-(use-package counsel-projectile
-  :after projectile
-  :config
-  (counsel-projectile-mode))
-
+;; Helm
+(use-package helm
+ :diminish
+ :init
+ (setq helm-autoresize-min-height 60)
+)
