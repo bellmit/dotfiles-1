@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-acario-light)
+(setq doom-theme 'doom-spacegrey)
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
@@ -72,10 +72,13 @@
   "t"  '(:ignore t :which-key "toggles")
   "w" 'save-buffer
   "m" 'doom/window-maximize-buffer
+  "p" 'helm-show-kill-ring
   )
 
-;; This seems to only work on Linux
-(global-set-key (kbd "C-/") 'swiper)
+;; Replace default M-x with Helm's version
+(map! :leader
+      :desc "Use Helm's completion"
+      ":"   #'helm-M-x)
 
 ;; Ctrl + P to search through git files
 (map! :leader
@@ -88,15 +91,15 @@
       "/"   #'counsel-rg)
 
 ;; magit related
-(samrat/leader-key-def
-  "g"   '(:ignore t :which-key "git")
-  "gs"  'magit-status
-  "gl"   '(:ignore t :which-key "log")
-  "glc" 'magit-log-current
-  "gb"  'magit-branch
-  "gP"  'magit-push-current
-  "gf"  'magit-fetch
-  "gr"  'magit-rebase)
+;; (samrat/leader-key-def
+;;   "g"   '(:ignore t :which-key "git")
+;;   "gs"  'magit-status
+;;   "gl"   '(:ignore t :which-key "log")
+;;   "glc" 'magit-log-current
+;;   "gb"  'magit-branch
+;;   "gP"  'magit-push-current
+;;   "gf"  'magit-fetch
+;;   "gr"  'magit-rebase)
 
 ;; Python Configuration
 (add-hook 'python-mode-hook #'format-all-mode)
@@ -125,5 +128,20 @@
 
 (use-package counsel-projectile
   :after projectile
+  :ensure t
+)
+
+;; Helm configuration
+(use-package helm
+  :ensure t
+  :defer 2
   :config
-  (counsel-projectile-mode))
+  (require 'helm-config)
+  (helm-mode 1)
+  (setq helm-split-window-inside-p t
+    helm-move-to-line-cycle-in-source t)
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 40)
+  (helm-autoresize-mode 1)
+  (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+)
