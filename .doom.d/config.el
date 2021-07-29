@@ -72,7 +72,13 @@
   "t"  '(:ignore t :which-key "toggles")
   "w" 'save-buffer
   "m" 'doom/window-maximize-buffer
+  "p" 'helm-show-kill-ring
   )
+
+;; Replace default M-x with Helm's version
+(map! :leader
+      :desc "Use Helm's completion"
+      ":"   #'helm-M-x)
 
 ;; Replace project find to search through git files
 (map! :leader
@@ -83,6 +89,11 @@
 (map! :leader
       :desc "Use ripgrep for text in files"
       "/"   #'counsel-rg)
+
+;; Remap swiper to swiper thing at point
+(map! :leader
+      :desc "Swiper search thing at point"
+      "s b"   #'swiper-thing-at-point)
 
 ;; magit related
 (samrat/leader-key-def
@@ -130,3 +141,18 @@
   :config
   (setq dired-dwim-target t)
   :hook (dired-mode . dired-hide-details-mode))
+
+;; Helm configuration
+(use-package helm
+  :ensure t
+  :defer 2
+  :config
+  (require 'helm-config)
+  (helm-mode 1)
+  (setq helm-split-window-inside-p t
+    helm-move-to-line-cycle-in-source t)
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 40)
+  (helm-autoresize-mode 1)
+  (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+)
