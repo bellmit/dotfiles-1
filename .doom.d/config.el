@@ -106,9 +106,6 @@
   "gf"  'magit-fetch
   "gr"  'magit-rebase)
 
-;; Python Configuration
-(add-hook 'python-mode-hook #'format-all-mode)
-
 ;; Company mode
 (use-package company
   :after lsp-mode
@@ -144,7 +141,6 @@
 
 ;; Helm configuration
 (use-package helm
-  :ensure t
   :defer 2
   :config
   (require 'helm-config)

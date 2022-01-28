@@ -2,7 +2,7 @@
 	name = Samrat Jha
 	email = samrat.jha@appian.com
 [core]
-	autocrlf = input
+	autocrlf = false
 	editor = vim
 [push]
 	default = simple
